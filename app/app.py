@@ -46,7 +46,7 @@ def playlist(playlist):
 @app.route('/get_media/<string:filename>')
 def playvideo(filename):
     checkAccess()
-    folders_dict = dict(Settings.get_config_param('folders'))
+    folders_dict = Settings.get_config_param('folders')
     playlist = request.args.get('playlist')
     target_path = None
     for folder in folders_dict:
@@ -58,7 +58,7 @@ def playvideo(filename):
 
 
 def video(filename,playlist):
-    folders_dict = dict(Settings.get_config_param('folders'))
+    folders_dict = Settings.get_config_param('folders')
     target_path = None
     for folder in folders_dict:
         if folder["name"] == playlist:
