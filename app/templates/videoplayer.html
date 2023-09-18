@@ -5,7 +5,7 @@
 </head>
 <body>
 <video controls preload="auto" autoplay>
-<source src="{{ url_for('video', filename=mp4_file, playlist=playlist) }}" type="video/mp4">
+<source src="{{ url_for('video', filename=mp4_file, playlist=playlist, key=key ) }}" type="video/mp4">
 </video>
 </body>
 </html>

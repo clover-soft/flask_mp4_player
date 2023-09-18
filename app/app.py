@@ -43,7 +43,7 @@ def playlist(playlist):
     return render_template('playlist.html', mp4_list=mp4_list, host=host, key=request.args.get('key'), playlist=playlist)
 
 
-@app.route('/get_media/<string:filename>')
+@app.route('/get_player/<string:filename>')
 def playvideo(filename):
     checkAccess()
     folders_dict = Settings.get_config_param('folders')
@@ -56,8 +56,9 @@ def playvideo(filename):
         abort(403, "Access denied")
     return render_template('videoplayer.html', mp4_file=filename, playlist=playlist)
 
-
-def video(filename,playlist):
+@app.route('/get_media')
+def video(filename,playlist, key):
+    checkAccess()
     folders_dict = Settings.get_config_param('folders')
     target_path = None
     for folder in folders_dict:
