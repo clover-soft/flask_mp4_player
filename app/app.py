@@ -26,6 +26,8 @@ def playlist(playlist):
     checkAccess()
     folders_dict = dict(Settings.get_config_param('folders'))
     target_path = None
+    logger.info("playlist: " + playlist)
+    logger.info(folders_dict)
     for folder in folders_dict:
         if folder["name"] == playlist:
             target_path = folder["path"]
