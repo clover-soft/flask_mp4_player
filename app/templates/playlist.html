@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Видосы</title>
+    <title>Видео файлы</title>
 </head>
 <body>
     <h1>Плейлист</h1>
     <ul>
         {% for file in mp4_list %}
-        <li><a href="http://{{ host }}/get_media/{{ file }}?key={{ key }}&playlist={{ playlist }}">{{ file }}</a></li>
+        <li><a href="http://{{ host }}/get_player/{{ file }}?key={{ key }}&playlist={{ playlist }}">{{ file }}</a></li>
         {% endfor %}
     </ul>
 </body>
