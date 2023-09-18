@@ -24,7 +24,7 @@ def checkAccess():
 @app.route('/playlist/<string:playlist>', methods=['GET'])
 def playlist(playlist):
     checkAccess()
-    folders_dict = dict(Settings.get_config_param('folders'))
+    folders_dict = Settings.get_config_param('folders')
     target_path = None
     logger.info("playlist: " + playlist)
     logger.info(folders_dict)
