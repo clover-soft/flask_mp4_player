@@ -1,0 +1,27 @@
+name: SYSTEM4 Backend deploy scripts
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, Linux, X64, mp4player]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Remove Python Files
+      run: |
+        find /srv/scripts/backend/app ! -name '.settings.json' -type f -delete
+
+    - name: Copy Scripts to Local Directory
+      run: |
+        cp -r app/* /srv/scripts/backend/app
+
+    - name: Restart asterisk-backend container
+      run: |
+        cd /srv
+        docker-compose restart backend
