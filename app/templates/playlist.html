@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Видосы</title>
+</head>
+<body>
+    <h1>Плейлист</h1>
+    <ul>
+        {% for file in mp4_list %}
+        <li><a href="http://{{ host }}/get_media/{{ file }}?key={{ key }}&playlist={{ playlist }}">{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
