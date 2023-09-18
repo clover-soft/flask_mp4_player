@@ -57,8 +57,10 @@ def playvideo(filename):
     return render_template('videoplayer.html', mp4_file=filename, playlist=playlist, key=request.args.get('key'))
 
 @app.route('/get_media')
-def video(filename,playlist, key):
+def video():
     checkAccess()
+    filename = request.args.get('filename')
+    playlist = request.args.get('playlist')
     folders_dict = Settings.get_config_param('folders')
     target_path = None
     for folder in folders_dict:
