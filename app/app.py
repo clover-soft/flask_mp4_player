@@ -54,7 +54,7 @@ def playvideo(filename):
             target_path = folder["path"]
     if target_path is None:
         abort(403, "Access denied")
-    return render_template('videoplayer.html', mp4_file=filename, playlist=playlist)
+    return render_template('videoplayer.html', mp4_file=filename, playlist=playlist, key=request.args.get('key'))
 
 @app.route('/get_media')
 def video(filename,playlist, key):
