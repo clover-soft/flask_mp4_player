@@ -126,9 +126,11 @@ def dp_test():
     from deeppavlov.utils.socket import encode
     prompt = request.args.get('prompt')
     logger.info(prompt)
+    dataset = {}
+    dataset["dataset"] = json.dumps(Settings.get_config_param('dp_dataset'))
     socket_payload = {
         "texts": [prompt],
-        "dataset": [json.dumps(Settings.get_config_param('dp_dataset'))]
+        "dataset": dataset
     }
     serialized_socket_payload = encode(socket_payload)
 
