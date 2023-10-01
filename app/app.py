@@ -56,6 +56,7 @@ def playvideo(filename):
         abort(403, "Access denied")
     return render_template('videoplayer.html', mp4_file=filename, playlist=playlist, key=request.args.get('key'))
 
+
 @app.route('/get_media')
 def video():
     checkAccess()
@@ -118,6 +119,7 @@ def get_mp4_files(directory):
 
 # Обработчик для неопределенных маршрутов
 
+
 @app.route('/dp_test', methods=['GET'])
 def dp_test():
     import json
@@ -126,8 +128,7 @@ def dp_test():
     from deeppavlov.utils.socket import encode
     prompt = request.args.get('prompt')
     logger.info(prompt)
-    dataset = []
-    dataset.append(Settings.get_config_param('dp_dataset'))
+    dataset = Settings.get_config_param('dp_dataset')
     socket_payload = {
         "texts": [prompt],
         "dataset": dataset
@@ -143,6 +144,7 @@ def dp_test():
         json_payload = json.loads(serialized_response)
     logger.info(json_payload)
     return json_payload
+
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
