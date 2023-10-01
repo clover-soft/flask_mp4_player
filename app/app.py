@@ -128,7 +128,7 @@ def dp_test():
     logger.info(prompt)
     socket_payload = {
         "texts": [prompt],
-        "dataset": Settings.get_config_param('dp_dataset')
+        "dataset": [Settings.get_config_param('dp_dataset')]
     }
     serialized_socket_payload = encode(socket_payload)
 
