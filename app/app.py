@@ -128,7 +128,7 @@ def dp_test():
     logger.info(prompt)
     socket_payload = {
         "texts": [prompt],
-        "dataset": [Settings.get_config_param('dp_dataset')]
+        "dataset": [json.dumps(Settings.get_config_param('dp_dataset'))]
     }
     serialized_socket_payload = encode(socket_payload)
 
@@ -139,7 +139,7 @@ def dp_test():
         body_len = unpack('<I', header)[0]
         serialized_response = s.recv(body_len)
         json_payload = json.loads(serialized_response)
-
+    logger.info(json_payload)
     return json_payload
 
 @app.route('/', defaults={'path': ''})
