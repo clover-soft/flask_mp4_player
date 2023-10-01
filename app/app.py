@@ -118,6 +118,9 @@ def get_mp4_files(directory):
 
 # Обработчик для неопределенных маршрутов
 
+@app.route('/dp_test', methods=['GET'])
+def dp_test():
+    abort(200, "OK")
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
