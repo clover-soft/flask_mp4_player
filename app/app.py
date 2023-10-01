@@ -120,7 +120,26 @@ def get_mp4_files(directory):
 
 @app.route('/dp_test', methods=['GET'])
 def dp_test():
-    abort(200, "OK")
+    import json
+    import socket
+    from struct import unpack
+    from deeppavlov.utils.socket import encode
+    prompt = request.args.get('prompt')
+    socket_payload = {
+        "texts": [prompt],
+        "dataset": Settings.get_config_param('pd_dataset')
+    }
+    serialized_socket_payload = encode(socket_payload)
+
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.connect(('0.0.0.0', 5000))
+        s.sendall(serialized_socket_payload)
+        header = s.recv(4)
+        body_len = unpack('<I', header)[0]
+        serialized_response = s.recv(body_len)
+        json_payload = json.loads(serialized_response)
+
+    return json_payload
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
