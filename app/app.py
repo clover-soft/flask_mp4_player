@@ -125,6 +125,7 @@ def dp_test():
     from struct import unpack
     from deeppavlov.utils.socket import encode
     prompt = request.args.get('prompt')
+    logger.info(prompt)
     socket_payload = {
         "texts": [prompt],
         "dataset": Settings.get_config_param('pd_dataset')
