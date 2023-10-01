@@ -127,7 +127,7 @@ def dp_test():
     prompt = request.args.get('prompt')
     logger.info(prompt)
     dataset = []
-    dataset.append(json.dumps(Settings.get_config_param('dp_dataset')))
+    dataset.append(Settings.get_config_param('dp_dataset'))
     socket_payload = {
         "texts": [prompt],
         "dataset": dataset
