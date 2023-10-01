@@ -132,7 +132,7 @@ def dp_test():
     serialized_socket_payload = encode(socket_payload)
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect(('0.0.0.0', 5000))
+        s.connect(('deeppavlov', 5000))
         s.sendall(serialized_socket_payload)
         header = s.recv(4)
         body_len = unpack('<I', header)[0]
